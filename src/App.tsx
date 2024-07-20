@@ -8,7 +8,8 @@ const theme = createTheme({
   typography: {
     fontFamily: '"CustomOpenSans"',
     button: {
-      textTransform: "none"
+      textTransform: "none",
+      fontSize: '18px'
     }
   }
 })

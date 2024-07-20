@@ -1,19 +1,24 @@
-import { Grid } from "@mui/material";
 import React from "react";
+import { Grid } from "@mui/material";
 import { SearchBar } from "../components/searchBar/searchBar.component";
 import { SearchResult } from "../components/searchResults/searchResult.component";
 import { SearchCount } from "../components/searchCount/searchCount.component";
+import { MasterHeader } from "../components/header/masterHeader.component";
 
 export const Search = () => {
     return (
         <>
-
-        <SearchBar/>
-        <Grid container rowSpacing={2} sx={{paddingLeft:'50px', paddingRight: '50px'}}>
+        <Grid container rowSpacing={6}>
             <Grid item xs={12}>
+                <MasterHeader/>
+            </Grid>
+            <Grid item xs={12}>
+                <SearchBar/>
+            </Grid>
+            <Grid item xs={12} sx={{paddingLeft:'4%', paddingRight: '4%'}}>
                 <SearchCount total={300} offset={0}/>
             </Grid>
-            <Grid item xs={12} sm={10}>
+            <Grid item xs={12} sm={10} sx={{paddingLeft:'4%', paddingRight: '4%'}}>
                 <SearchResult
                     title='Choose a Child Care Centre'
                     titleHighlights={[]}
@@ -23,7 +28,7 @@ export const Search = () => {
                     documentURI='https://www.ecda.gov.sg/Parents/Pages/ParentsChooseCCC.aspx'
                 />
             </Grid>
-            <Grid item xs={12} sm={10}>
+            <Grid item xs={12} sm={10} sx={{paddingLeft:'4%', paddingRight: '4%'}}>
                 <SearchResult
                     title='Choose a Child Care Centre'
                     titleHighlights={[]}
@@ -33,7 +38,7 @@ export const Search = () => {
                     documentURI='https://www.ecda.gov.sg/Parents/Pages/ParentsChooseCCC.aspx'
                 />
             </Grid>
-            <Grid item xs={12} sm={10}>
+            <Grid item xs={12} sm={10} sx={{paddingLeft:'4%', paddingRight: '4%'}}>
                 <SearchResult
                     title='Choose a Child Care Centre'
                     titleHighlights={[]}

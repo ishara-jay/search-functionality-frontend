@@ -1,11 +1,8 @@
 import React from "react";
-import CloseIcon from '@mui/icons-material/Close';
 import { 
     Autocomplete, 
     Button, 
     Grid, 
-    IconButton, 
-    InputAdornment, 
     TextField 
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
@@ -21,8 +18,8 @@ export const SearchBar = () => {
     ]
 
     return (
-        <Grid container spacing={0} sx={{padding: '3%', boxShadow: '0px 4px 10px #E0E4E5', marginBottom: '3%'}}>
-            <Grid item xs={10}>
+        <Grid container spacing={0} sx={{padding: '3%', paddingTop: 0, boxShadow: '0px 4px 10px #E0E4E5', marginBottom: '3%'}}>
+            <Grid item xs={8} sm={10}>
                 <Autocomplete 
                     id="seach-text-field" 
                     freeSolo 
@@ -32,13 +29,6 @@ export const SearchBar = () => {
                         <TextField {...params} 
                             placeholder="Enter your text here...." 
                             InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <IconButton edge="end">
-                                            <CloseIcon/>
-                                        </IconButton>
-                                    </InputAdornment>
-                                ),
                                 ...params.InputProps,
                                 type: 'search',
                             }}
@@ -46,7 +36,7 @@ export const SearchBar = () => {
                     }
                 />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={4} sm={2}>
                 <Button 
                     variant="contained" 
                     sx={{

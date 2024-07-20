@@ -21,3 +21,20 @@ export interface IHighlight {
     beginOffset: number,
     endOffset: number
 }
+
+export interface IHighlightText{
+    text: string;
+    isBold: boolean;
+}
+
+export interface ISuggestions {
+    queries: string[]
+}
+
+interface SuggestionsQueryParams {
+    inputText: string;
+}
+
+export type SuggestionsQueryKey = ['suggestions', SuggestionsQueryParams];
+
+export type ResultsQueryKey = ['results', SuggestionsQueryParams];

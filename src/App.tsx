@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Search } from './pages/search.page';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const theme = createTheme({
   typography: {
@@ -12,12 +13,16 @@ const theme = createTheme({
   }
 })
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Search/>
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <div className="App">
+          <Search/>
+        </div>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

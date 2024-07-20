@@ -1,23 +1,28 @@
-export interface IResultsDTO{
+export interface IResultsDTO {
     TotalNumberOfResults: number;
     Page: number;
     PageSize: number;
     ResultItems: IResultItemDTO[]
 }
 
-export interface IResultItemDTO{
+export interface IResultItemDTO {
     DocumentId:string;
     DocumentTitle: IDocumentDTO;
     DocumentExcerpt: IDocumentDTO;
     DocumentURI: string
 }
 
-export interface IDocumentDTO{
+export interface IDocumentDTO {
     Text: string;
     Highlights:IHighlightDTO[]
 }
 
-export interface IHighlightDTO{
+export interface IHighlightDTO {
     BeginOffset: number;
     EndOffset: number;
+}
+
+export interface ISuggestionsDTO {
+    stemmedQueryTerm: string;
+    suggestions: string[]
 }

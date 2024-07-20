@@ -1,48 +1,72 @@
+import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import React from "react";
 import { SearchBar } from "../components/searchBar/searchBar.component";
 import { SearchResult } from "../components/searchResults/searchResult.component";
 import { SearchCount } from "../components/searchCount/searchCount.component";
+import { useQuery } from "react-query";
+import { fetchQueryResults, fetchSuggestions } from "../util/query.util";
+import { IResult, IResultItem, ISuggestions, ResultsQueryKey, SuggestionsQueryKey } from "../models/app.model";
+import { MasterHeader } from "../components/header/masterHeader.component";
 
 export const Search = () => {
+
+    const [inputText, setInputText] = useState('');
+    const [suggestions, setSugesstions] = useState<ISuggestions>({
+        queries: []
+    });
+
+    const suggestionsQuery = useQuery<ISuggestions, Error, ISuggestions, SuggestionsQueryKey>(
+        ['suggestions', { inputText }], 
+        fetchSuggestions
+    );
+
+    const resultsQuery = useQuery<IResult, Error, IResult, ResultsQueryKey>(
+        ['results', { inputText }], 
+        fetchQueryResults, 
+        { enabled : false}
+    );
+
+    const onClickSearch = () => {
+        resultsQuery.refetch();
+    }
+
+    useEffect(() => {
+        if (suggestionsQuery.isError) {
+            setSugesstions({
+                queries: ['Error Retrieving Suggestions...']
+            });
+        } else if (suggestionsQuery.data) {
+            setSugesstions(suggestionsQuery.data)
+        }
+    }, [suggestionsQuery.data, suggestionsQuery.isError])
+
     return (
         <>
+        <MasterHeader/>
+        <SearchBar 
+            setInputText={setInputText} 
+            suggestions={suggestions} 
+            inputText={inputText}
+            onClick={onClickSearch}
 
-        <SearchBar/>
-        <Grid container rowSpacing={2} sx={{paddingLeft:'50px', paddingRight: '50px'}}>
+        />
+        <Grid container rowSpacing={4} sx={{paddingLeft:'50px', paddingRight: '50px'}}>
             <Grid item xs={12}>
-                <SearchCount total={300} offset={0}/>
+                <SearchCount total={resultsQuery.data?.totalResults} offset={0}/>
             </Grid>
-            <Grid item xs={12} sm={10}>
-                <SearchResult
-                    title='Choose a Child Care Centre'
-                    titleHighlights={[]}
-                    description='...as partners to optimise the child physical, intellectual, emotional and social development. Choosing a Child Care Centre for Your Child In choosing the appropriate child care arrangement, the age and personality of your child are important factors for consideration...'
-                    descriptionHighlights={[]}
-                    documentId='8f09d0d0898e5470189120415158f7b5'
-                    documentURI='https://www.ecda.gov.sg/Parents/Pages/ParentsChooseCCC.aspx'
-                />
-            </Grid>
-            <Grid item xs={12} sm={10}>
-                <SearchResult
-                    title='Choose a Child Care Centre'
-                    titleHighlights={[]}
-                    description='...as partners to optimise the child physical, intellectual, emotional and social development. Choosing a Child Care Centre for Your Child In choosing the appropriate child care arrangement, the age and personality of your child are important factors for consideration...'
-                    descriptionHighlights={[]}
-                    documentId='8f09d0d0898e5470189120415158f7b5'
-                    documentURI='https://www.ecda.gov.sg/Parents/Pages/ParentsChooseCCC.aspx'
-                />
-            </Grid>
-            <Grid item xs={12} sm={10}>
-                <SearchResult
-                    title='Choose a Child Care Centre'
-                    titleHighlights={[]}
-                    description='...as partners to optimise the child physical, intellectual, emotional and social development. Choosing a Child Care Centre for Your Child In choosing the appropriate child care arrangement, the age and personality of your child are important factors for consideration...'
-                    descriptionHighlights={[]}
-                    documentId='8f09d0d0898e5470189120415158f7b5'
-                    documentURI='https://www.ecda.gov.sg/Parents/Pages/ParentsChooseCCC.aspx'
-                />
-            </Grid>
+            {resultsQuery.data?.resultItems.map((result: IResultItem) => {
+                return (
+                    <Grid item xs={12} sm={10} key={result.documentID}>
+                        <SearchResult
+                            documentTitle={result.documentTitle}
+                            documentExcerpt={result.documentExcerpt}
+                            documentID={result.documentID}
+                            documentURI={result.documentURI}
+                        />
+                    </Grid>
+                )
+                })
+            }
         </Grid>
         </>
     )

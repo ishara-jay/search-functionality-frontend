@@ -28,11 +28,11 @@ export const SearchBar = (props: ISearchBarProps) => {
     } 
 
     return (
-        <Grid container spacing={0} sx={{padding: '3%', boxShadow: '0px 4px 10px #E0E4E5', marginBottom: '3%'}}>
+        <Grid container spacing={0} sx={{padding: '4%', boxShadow: '0px 4px 10px #E0E4E5', marginBottom: '3%'}}>
             <Grid item xs={8} sm={10}>
                 <Autocomplete 
                     id="seach-text-field" 
-                    options={suggestions.queries}
+                    options={props.inputText.length !== 0 ? suggestions.queries : ['no options...']}
                     freeSolo
                     disableClearable
                     renderInput={(params: any) => 

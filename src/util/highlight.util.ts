@@ -1,6 +1,6 @@
 import { IHighlight, IHighlightText } from "../models/app.model";
 
-export const boldText = (text: string, highlights: IHighlight[]) => {
+export const boldText = (text: string, highlights: IHighlight[]) : IHighlightText[] => {
     const formattedTextArr: IHighlightText[] = [];
     let beginSliceIndex = 0;
 
@@ -10,14 +10,13 @@ export const boldText = (text: string, highlights: IHighlight[]) => {
             text: text.substring(beginSliceIndex,highlight.beginOffset),
             isBold: false
         }
-        textSlice.text !== "" ? formattedTextArr.push(textSlice) : 0;
+        textSlice.text !== "" && formattedTextArr.push(textSlice);
 
         const boldTextSlice = {
             text: text.substring(highlight.beginOffset, highlight.endOffset),
             isBold: true
         }
-
-        boldTextSlice.text !== "" ? formattedTextArr.push(boldTextSlice) : 0;
+        boldTextSlice.text !== "" && formattedTextArr.push(boldTextSlice);
 
         beginSliceIndex = highlight.endOffset;
     });

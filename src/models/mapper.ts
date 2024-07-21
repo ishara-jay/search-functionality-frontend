@@ -30,7 +30,7 @@ export const mapResults = (resultDTO: IResultsDTO):IResult => {
     return result;
 }
 
-const mapResultItems = (resultItemsDTO: IResultItemDTO[]):IResultItem[] => {
+export const mapResultItems = (resultItemsDTO: IResultItemDTO[]):IResultItem[] => {
 
     return resultItemsDTO.map((itemDTO: IResultItemDTO)=>{
         return {
@@ -42,14 +42,14 @@ const mapResultItems = (resultItemsDTO: IResultItemDTO[]):IResultItem[] => {
     });
 }
 
-const mapDocument = (documentDTO: IDocumentDTO): IDocument => {
+export const mapDocument = (documentDTO: IDocumentDTO): IDocument => {
         return{
             text: documentDTO.Text,
             highlights: mapHighlight(documentDTO.Highlights)
         }
 }
 
-const mapHighlight = (hightlightsDTO: IHighlightDTO[]): IHighlight[] => {
+export const mapHighlight = (hightlightsDTO: IHighlightDTO[]): IHighlight[] => {
     return hightlightsDTO.map((hightlightsDTO: IHighlightDTO)=>{
         return {
             beginOffset: hightlightsDTO.BeginOffset,

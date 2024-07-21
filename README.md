@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Search Functionality Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) as an assignment.
 
 ## Available Scripts
 
@@ -24,23 +24,30 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setting up environmental variables
 
-### `npm run eject`
+Add .env file to the root directory as per the following template
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    REACT_APP_BASE_URL=
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    REACT_APP_SUGGESTION_ENDPOINT=
+    REACT_APP_QUERY_ENDPOINT=
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+For development purposes, following environmental variables can be utilised.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    REACT_APP_BASE_URL=https://gist.githubusercontent.com/yuhong90/b5544baebde4bfe9fe2d12e8e5502cbf/raw
 
-## Learn More
+    REACT_APP_SUGGESTION_ENDPOINT=e026dab444155edf2f52122aefbb80347c68de86/suggestion.json
+    REACT_APP_QUERY_ENDPOINT=44deafab00fc808ed7fa0e59a8bc959d255b9785/queryResult.json
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Containerisation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This app has been containerised using docker for deployment purposes. Run below command to create the docker image
+
+    docker build -t search-functionality-frontend .
+
+and then run below command to run the docker image.
+
+    docker run -p <your choice of port>:80 search-functionality-frontend
+

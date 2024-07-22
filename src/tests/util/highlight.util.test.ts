@@ -22,6 +22,6 @@ test('boldText should work when a string and a list of highlights is given', () 
 })
 
 test('boldText should work when a string and a list of highlights is given and ends with a bold text', () => {
-    console.log(boldText(text, highlights))
-    expect(boldText(text, highlights)).toEqual(response);
+    console.log(boldText(text, highlightsForEndBold))
+    expect(boldText(text, highlightsForEndBold)).toEqual(responseForEndBold);
 })

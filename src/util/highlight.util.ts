@@ -21,5 +21,13 @@ export const boldText = (text: string, highlights: IHighlight[]) : IHighlightTex
         beginSliceIndex = highlight.endOffset;
     });
 
+    if(beginSliceIndex !== text.length - 1) {
+        const boldTextSlice = {
+            text: text.substring(beginSliceIndex, text.length),
+            isBold: false
+        }
+        boldTextSlice.text !== "" && formattedTextArr.push(boldTextSlice)
+    }
+
     return formattedTextArr;
 }

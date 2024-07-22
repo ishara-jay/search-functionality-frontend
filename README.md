@@ -50,3 +50,6 @@ and then run below command to run the docker image.
 
     docker run -p <your choice of port>:80 search-functionality-frontend
 
+    ex:
+        docker run -p 3001:80 search-functionality-frontend
+

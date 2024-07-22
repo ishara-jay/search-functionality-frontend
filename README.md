@@ -2,6 +2,22 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) as an assignment.
 
+## Setting up environmental variables
+
+Add .env file to the root directory as per the following template
+
+    REACT_APP_BASE_URL=
+
+    REACT_APP_SUGGESTION_ENDPOINT=
+    REACT_APP_QUERY_ENDPOINT=
+
+For development purposes, following environmental variables can be utilised.
+
+    REACT_APP_BASE_URL=https://gist.githubusercontent.com/yuhong90/b5544baebde4bfe9fe2d12e8e5502cbf/raw
+
+    REACT_APP_SUGGESTION_ENDPOINT=e026dab444155edf2f52122aefbb80347c68de86/suggestion.json
+    REACT_APP_QUERY_ENDPOINT=44deafab00fc808ed7fa0e59a8bc959d255b9785/queryResult.json
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -23,23 +39,6 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-
-## Setting up environmental variables
-
-Add .env file to the root directory as per the following template
-
-    REACT_APP_BASE_URL=
-
-    REACT_APP_SUGGESTION_ENDPOINT=
-    REACT_APP_QUERY_ENDPOINT=
-
-For development purposes, following environmental variables can be utilised.
-
-    REACT_APP_BASE_URL=https://gist.githubusercontent.com/yuhong90/b5544baebde4bfe9fe2d12e8e5502cbf/raw
-
-    REACT_APP_SUGGESTION_ENDPOINT=e026dab444155edf2f52122aefbb80347c68de86/suggestion.json
-    REACT_APP_QUERY_ENDPOINT=44deafab00fc808ed7fa0e59a8bc959d255b9785/queryResult.json
 
 ## Containerisation
 
